@@ -54,8 +54,8 @@
 							<div id="content-billing_data">
 							</div>
 						</div>
-						<!-- <div role="tabpanel" class="tab-pane" id="tab2">
-							<form class="form-horizontal" id="search_form2" action="<?= base_url() . "bundle/taxes/" . $bundle_item_type . $menu . "/load_list"; ?>" method="POST">
+						<div role="tabpanel" class="tab-pane" id="tab2">
+							<form class="form-horizontal" id="search_form2" action="<?= base_url() . "bundle/taxes/" . $menu . "/load_list"; ?>" method="POST">
 								<fieldset>
 									<div class="form-group">
 										<label class="control-label col-md-2" for="src-pajak_id">Jenis Pajak</label>
@@ -99,7 +99,7 @@
 									</div>
 								</div>
 							</form>
-						</div> -->
+						</div>
 						<div role="tabpanel" class="tab-pane" id="tab3">
 							<form class="form-horizontal" id="search_form3" action="<?= base_url() ?>payment/load_billing_list_teller" method="POST">
 								<fieldset>
