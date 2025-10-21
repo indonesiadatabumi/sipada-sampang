@@ -64,7 +64,7 @@ class payment extends CI_Controller
 
 		$main_data['bundle_rows'] = $bundle_rows;
 
-		$main_data['bundle_item_type'] = $this->bundle_item_type;
+		// $main_data['bundle_item_type'] = $this->bundle_item_type;
 
 		$main_data['menu'] = 'payment';
 
