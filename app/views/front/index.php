@@ -6,66 +6,6 @@
             <section class="portfolio-showcase-block" style="margin-top:60px!important">
                 <div class="inside">
 
-                    <div class="row" style="margin-bottom:25px;">
-                        <div class="col-md-6 portfolio-blue post-41 metrolics_portfolio type-metrolics_portfolio status-publish hentry" style="cursor:pointer;">
-                            <a href="<?= base_url() ?>">
-                                <div class="featured-content" id="rcorners1">
-                                    <img src="<?= $this->config->item('img_path'); ?>bundle-icon/tax11.png" style="width:750px;" alt="Smart Map" />
-
-                                    <div class='featured-desc'>
-                                        <h4>SIG PBB</h4>
-                                        <span class='feat-category'>Jumlah Objek Pajak : Objek</span>
-                                        <span class='feat-icon'><i class='fa fa-globe fa-lg'></i></span>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6 post-41 metrolics_portfolio type-metrolics_portfolio status-publish hentry">
-                            <div class="featured-content" id="rcorners1">
-                                <div class="box" style="height: 325px;">
-                                    <!-- <h3 style="font-weight:bold;margin:0!important">Capaian Realisasi Target Penerimaan Pajak</h3> -->
-                                    <h3 style="font-weight:bold;margin:0!important">Capaian Realisasi Target Penerimaan Pajak <select id="tahun_pajak" onchange="get_realisasi()">
-                                            <option value="2025">2025</option>
-                                            <option value="2024">2024</option>
-                                            <option value="2023">2023</option>
-                                        </select></h3>
-                                    <table class="table table-bordered table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th rowspan="2">Jenis Pajak</th>
-                                                <th colspan="2" style="text-align: center;">Total WP</th>
-                                                <th colspan="2" style="text-align: center;">Total Pajak</th>
-                                                <!-- <th>Target</th>
-                                                <th>Realisasi</th> -->
-                                            </tr>
-                                            <tr>
-                                                <th>Target</th>
-                                                <th>Realisasi</th>
-                                                <th>Target</th>
-                                                <th>Realisasi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="hasil_realisasi">
-                                            <?php
-                                            foreach ($realisasi as $row) {
-                                                $realization = rand(0, 99);
-                                                echo "<tr>
-                                                    <td>" . $row['nama_pajak'] . "</td>
-                                                    <td>" . $row['target_wp'] . "</td>
-                                                    <td>" . $row['tot_realisasi_wp'] . "</td>
-                                                    <td align='right'>" . number_format($row['target_pajak'], 0, '.', ',') . "</td>
-                                                    <td align='right'>" . number_format($row['tot_realisasi'], 0, '.', ',') . "</td>
-                                                    </tr>";
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <?php
                     $i = 0;
                     foreach ($bundle_rows as $row) {

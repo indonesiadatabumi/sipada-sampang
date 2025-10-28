@@ -78,6 +78,7 @@
 								Username atau password anda salah !
 							</div>
 						</div>
+						<a href="dashboard" class="btn btn-sm btn-success" target="_blank"> -> Dashboard</a>
 
 					</div>
 
