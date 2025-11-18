@@ -229,8 +229,8 @@ class config extends CI_Controller
 		// var_dump($data);
 		// die;
 
-		$getId = $this->dao->execute(0, "SELECT * FROM user_privileges")->result_array();
-		$privilege_id = count($getId) + 1;
+		$getId = $this->dao->execute(0, "SELECT MAX(privilege_id)+1 as privilege_id FROM user_privileges")->result_array();
+		$privilege_id = $getId[0]['privilege_id'];
 		$bundle_rows = $this->dao->execute(0, "INSERT INTO user_privileges (privilege_id, user_type_id, menu_bundle_id, read_priv, add_priv, update_priv, delete_priv, print_priv, bundle_id) VALUES ($privilege_id, '$user_type_id', '$menu_bundle_id', '$read_priv', '$add_priv', '$update_priv', '$delete_priv', '$print_priv', '$bundle_id') ");
 
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
