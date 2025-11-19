@@ -48,7 +48,7 @@ class front extends CI_Controller
 
 		$this->global_model->reinitialize_dao();
 		$dao = $this->global_model->get_dao();
-		$sql = "SELECT * FROM bundel_pajak_retribusi WHERE (bundel_id BETWEEN 1 AND 20) AND aktif=TRUE ORDER BY bundel_id ASC";
+		$sql = "SELECT * FROM bundel_pajak_retribusi WHERE (bundel_id BETWEEN 1 AND 21) AND aktif=TRUE ORDER BY bundel_id ASC";
 		$bundle_rows = $dao->execute(0, $sql)->result_array();
 
 		$sql = "SELECT a.nama_paret as nama_pajak, COALESCE(c.tot_realisasi,'0') as tot_realisasi, COALESCE(d.tot_realisasi_wp,'0') as tot_realisasi_wp, e.target_pajak as target_pajak, f.target_wp as target_wp 
