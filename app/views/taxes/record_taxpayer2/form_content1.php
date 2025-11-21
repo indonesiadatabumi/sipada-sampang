@@ -434,9 +434,11 @@
 								<div class='input state-disabled'>
 									<select  class='form-control' onchange=\"get_zona(this.value,'input-zona'); trigger_sda();\" >
 										<option value='' selected></option>";
+			$curr_id = isset($curr_data2['kecamatan_id']) ? trim($curr_data2['kecamatan_id']) : '';
+
 			foreach ($district_rows as $row) {
-				$selected = ($row['kecamatan_id'] == $curr_data2['kecamatan_id'] ? 'selected' : '');
-				echo "<option value='" . $row['kecamatan_id'] . "_" . $row['nama_kecamatan'] . "_" . $row['kode_kecamatan'] . "' " . $selected . ">" . $row['nama_kecamatan'] . "</option>";
+				$selected = (trim($row['kecamatan_id']) === $curr_id) ? 'selected' : '';
+				echo "<option value='{$row['kecamatan_id']}_{$row['nama_kecamatan']}_{$row['kode_kecamatan']}' {$selected}>{$row['nama_kecamatan']}</option>";
 			}
 			echo "</select>
 								</div>
