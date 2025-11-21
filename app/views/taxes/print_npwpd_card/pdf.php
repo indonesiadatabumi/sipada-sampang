@@ -72,25 +72,36 @@ foreach ($rows as $row) {
 
 	// $html .= "</div>";
 
-	$html .= "<div class='card' >
-				  <table class='card-content'>
-				  <tr><td colspan='2' align='center' style='font-size: 12;'><b>PERHATIAN</b><br /><br /></td></tr>
-<br><br>
-				  <tr >
-				  <td valign='top' width='15' style='font-size:10;'>1.</td>
-				  <td style='font-size:10;'>Kartu ini harap disimpan baik-baik dan apabila hilang agar segera melaporkannya ke Badan Pendapatan Daerah Kabupaten Sampang.</td>
-				  </tr>
-				  <tr>
-				  <td valign='top' style='font-size:10;'>2.</td>
-				  <td style='font-size:10;'>Kartu ini hendaknya dibawa apabila saudara akan membayar pajak, melakukan transaksi dan berhubungan dengan instansi-instansi lainnya.</td>
-				  </tr>
-				  <tr>
-				  <td valign='top' style='font-size:10;'>3.</td>
-				  <td style='font-size:10;'>Dalam hal wajib pajak pindah domisilisupaya melaporkan diri ke Badan Pendapatan Kabupaten Sampang.</td>
-				  </tr>
-				  </table>";
+	$html .= "<div class='card'>
+				<table class='card-content'>
+					<tr>
+						<td colspan='2' align='center' style='font-size:12px;'>
+							<b>PERHATIAN</b><br><br>
+						</td>
+					</tr>
 
-	$html .= "</div>";
+					<tr>
+						<td valign='top' width='15' style='font-size:10px;'>1.</td>
+						<td style='font-size:10px;'>
+							Kartu ini harap disimpan baik-baik dan apabila hilang agar segera melaporkannya ke Badan Pendapatan Daerah Kabupaten Sampang.
+						</td>
+					</tr>
+
+					<tr>
+						<td valign='top' style='font-size:10px;'>2.</td>
+						<td style='font-size:10px;'>
+							Kartu ini hendaknya dibawa apabila saudara akan membayar pajak, melakukan transaksi dan berhubungan dengan instansi-instansi lainnya.
+						</td>
+					</tr>
+
+					<tr>
+						<td valign='top' style='font-size:10px;'>3.</td>
+						<td style='font-size:10px;'>
+							Dalam hal wajib pajak pindah domisili supaya melaporkan diri ke Badan Pendapatan Kabupaten Sampang.
+						</td>
+					</tr>
+				</table>
+			</div>";
 }
 
 $mpdf->WriteHTML($html);
