@@ -95,7 +95,7 @@ if ($ads_type_id == '') {
 									<td align='right'>Harga Satuan Rp.</td><td colspan='2'><input type='text' class='form-control thousand_format' id='input2-harga_satuan" . $order_num . "' name='input2-harga_satuan" . $order_num . "' value='" . number_format($ads_type_row['tarif_dasar']) . "' readonly/></td></tr>
 								</tr>
 								<tr>
-									<td align='right'>Nilai Sewa Reklame Rp.</td><td colspan='2'><input type='text' class='form-control thousand_format' id='input2-nilai_sewa_reklame" . $order_num . "' value='" . number_format(coalesce($curr_data['nilai_sewa_reklame'], 0)) . "' name='input2-nilai_sewa_reklame" . $order_num . "' value='" . number_format(coalesce($curr_data['nilai_satuan_reklame'], 0)) . "' readonly/></td></tr>
+									<td align='right'>Nilai Sewa Reklame Rp.</td><td colspan='2'><input type='text' class='form-control thousand_format' id='input2-nilai_sewa_reklame" . $order_num . "' value='" . number_format(coalesce($curr_data['nilai_sewa_reklame'], 0)) . "' name='input2-nilai_sewa_reklame" . $order_num . "' readonly/></td></tr>
 								</tr>
 								<tr>
 									<td align='right'>Tarif Pajak (%)</td><td colspan='2'><input type='text' class='form-control thousand_format' id='input2-persen_tarif" . $order_num . "' name='input2-persen_tarif" . $order_num . "' value='" . number_format($tax_percentage, 2, '.', ',') . "' readonly/></td></tr>
