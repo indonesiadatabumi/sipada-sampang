@@ -783,7 +783,7 @@
                                                         <label class='control-label col-md-4'>Tgl. Pasang <font color='red'>*</font></label>
                                                         <div class='col-md-4'>
                                                             <div class='input'>
-                                                                <input class='form-control datepicker' name='input2-tgl_pasang1' id='input2-tgl_pasang1' value='' required/>
+                                                                <input class='form-control datepicker2' name='input2-tgl_pasang1' id='input2-tgl_pasang1' value='' required/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -863,7 +863,7 @@
                                                             <label class='control-label col-md-4'>Tgl. Pasang <font color='red'>*</font></label>
                                                             <div class='col-md-4'>
                                                                 <div class='input'>
-                                                                    <input class='form-control datepicker' name='input2-tgl_pasang" . $i . "' id='input2-tgl_pasang" . $i . "' value='" . indo_date_format($curr_data3_row['tgl_pasang'], 'shortDate') . "' required/>
+                                                                    <input class='form-control datepicker2' name='input2-tgl_pasang" . $i . "' id='input2-tgl_pasang" . $i . "' value='" . indo_date_format($curr_data3_row['tgl_pasang'], 'shortDate') . "' required/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1019,7 +1019,7 @@
 
     function load_dtl_ads_content(val, order_num) {
         ajax_object.reset_object();
-        data_ajax = ['ads_type_id=' + val, 'tax_percentage=' + $('#persen_tarif').val(), 'order_num=' + order_num, 'menu=' + $('#menu').val()];
+        data_ajax = ['ads_type_id=' + val, 'tax_percentage=' + 25, 'order_num=' + order_num, 'menu=' + $('#menu').val()];
         ajax_object.set_url(base_url + 'bundle/taxes/advertisement/record_tax_object_data/load_dtl_ads_content')
             .set_plugin_datatable(false)
             .set_content('#content-dtl_ads' + order_num)
