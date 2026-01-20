@@ -540,7 +540,7 @@ class record_taxpayer2 extends item_bundle_parent
 				$this->collect_cond_params($_POST, 'src_params')
 			);
 
-			$this->print_list_data($menu, $cond_params);
+			$this->print_list_data($menu, $p2 = null, $p3 = null, $p4 = null, $p5 = null, $p6 = null, $cond_params);
 		} else {
 			$this->_ci->load->view('errors/html/error_403', array('type' => $act));
 		}
@@ -1009,7 +1009,7 @@ class record_taxpayer2 extends item_bundle_parent
 					$this->collect_cond_params($_POST, 'src')
 				);
 
-				$this->print_list_data($menu, $cond_params);
+				$this->print_list_data($menu, $p2 = null, $p3 = null, $p4 = null, $p5 = null, $p6 = null, $cond_params);
 			}
 		} else {
 			$this->_ci->load->view('errors/html/error_403', array('type' => $act));
