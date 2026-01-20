@@ -3,7 +3,6 @@
     <!-- <input type="hidden" name="act" id="act" value="<?= base_url() . "/bundle/" . $bundle_type . "/" . $bundle_item_type . "/" . $menu . "/submit_form"; ?>" /> -->
     <input type="hidden" name="id_value" value="<?= $id_value; ?>" />
     <input type="hidden" name="wp_wr_detil_id" id="wp_wr_detil_id" value="<?= $wp_wr_detil_id; ?>" />
-    <!-- <input type="hidden" name="persen_tarif" id="persen_tarif" value="<?= $tax_percentage; ?>" /> -->
     <input type="hidden" name="menu" id="menu" value="<?= $menu; ?>" />
     <input type="hidden" name="pajak_id" id="pajak_id" value="<?= $bundle_id; ?>" />
 
