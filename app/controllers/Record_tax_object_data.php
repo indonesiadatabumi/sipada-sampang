@@ -582,7 +582,7 @@ class record_tax_object_data extends item_bundle_parent
 
 			if ($this->bundle_id == 7) {
 				$input_params2['volume'] = str_replace(',', '', $_POST['input2-volume']);
-				$input_params2['tarif_dasar'] = str_replace(',', '', $_POST['input2-tarif_dasar']);
+				// $input_params2['tarif_dasar'] = str_replace(',', '', $_POST['input2-tarif_dasar']);
 			}
 
 			$this->_ci->db->trans_begin();
@@ -886,7 +886,11 @@ class record_tax_object_data extends item_bundle_parent
 						$input_params3 = array();
 
 						$get_spt_detil_abt_id = $this->dao->execute(0, "SELECT MAX(spt_detil_abt_id)+1 AS spt_detil_abt_id FROM spt_detil_abt")->row_array();
-						$spt_detil_abt_id = $get_spt_detil_abt_id['spt_detil_abt_id'];
+						if ($get_spt_detil_abt_id['spt_detil_abt_id'] == null) {
+							$spt_detil_abt_id = 1;
+						} else {
+							$spt_detil_abt_id = $get_spt_detil_abt_id['spt_detil_abt_id'];
+						}
 						$input_params3['hrg_leb_2500'] = str_replace(',', '', $_POST['input2-hrg_leb_2500']);
 						$input_params3['hrg_1001_2500'] = str_replace(',', '', $_POST['input2-hrg_1001_2500']);
 						$input_params3['hrg_501_1000'] = str_replace(',', '', $_POST['input2-hrg_501_1000']);
