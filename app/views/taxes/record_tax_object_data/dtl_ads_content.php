@@ -83,6 +83,24 @@ if ($ads_type_id == '') {
 					<div class='col-md-12'>
 						<table class='table table-bordered'>
 							<thead>
+								<tr><td>Panjang</td><td>Lebar</td><td>Sisi</td></tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type='text' class='form-control thousand_format' placeholder='Panjang' id='input2-panjang" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
+									</td>
+									<td>
+										<input type='text' class='form-control thousand_format' placeholder='Lebar' id='input2-lebar" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
+									</td>
+									<td>
+										<input type='text' class='form-control thousand_format' placeholder='Sisi' id='input2-sisi" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table class='table table-bordered'>
+							<thead>
 								<tr><td>Ukuran (" . $ads_type_row['satuan_ukuran'] . ")</td><td>Jangka Waktu (" . $ads_type_row['satuan_jangka_waktu'] . ")</td><td>Jumlah</td></tr>
 							</thead>
 							<tbody>
@@ -200,6 +218,24 @@ if ($ads_type_id == '') {
 			rightAlign: true
 		});
 	});
+
+	function hitungUkuranOtomatis(orderNum) {
+		// Ambil nilai dari input (pastikan hapus koma format ribuan jika ada)
+		let p = document.getElementById('input2-panjang' + orderNum).value.replace(/,/g, '') || 0;
+		let l = document.getElementById('input2-lebar' + orderNum).value.replace(/,/g, '') || 0;
+		let s = document.getElementById('input2-sisi' + orderNum).value.replace(/,/g, '') || 0;
+
+		// Hitung Total Ukuran
+		let totalUkuran = parseFloat(p) * parseFloat(l) * parseFloat(s);
+
+		// Masukkan ke input ukuran asli
+		let inputUkuran = document.getElementById('input2-ukuran' + orderNum);
+		inputUkuran.value = totalUkuran;
+
+		// Trigger fungsi kalkulasi pajak yang sudah ada (multifunction2)
+		// agar Nilai Sewa dan Pajak ikut terupdate otomatis
+		adstax_execute_multifunction2(orderNum);
+	}
 
 	function load_class_road_value(class_id, ads_type_id) {
 
