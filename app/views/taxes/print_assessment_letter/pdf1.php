@@ -184,6 +184,8 @@ foreach ($rows as $row) {
 		$x_date = explode('-', $row['masa_pajak1']);
 		$tax_period = get_monthName($x_date[1]);
 		$pajak_sesungguhnya = $row['pajak'];
+		$diff_month = get_diff_months($row['tgl_jatuh_tempo'], date('Y-m-d'), $row['jenis_spt_id']);
+		$fine = assess_fine($row['pajak'], $diff_month);
 
 		if ($row['wp_wr_id'] == '40') {
 			$html .= "
@@ -330,7 +332,7 @@ foreach ($rows as $row) {
 				$html .= "<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Ketetapan Pokok Pajak</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($pajak_sesungguhnya, 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Kompensasi Bulan Sebelumnya</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($row['kompensasi'], 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Pengurangan PAT 55%</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($pengurangan_pat, 0, '.', ',') . "</td></tr>
-					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>0</td></tr>
+					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($fine, 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td></td><td class='nobor-left' style='font-size:10px;'>: b. Kenaikan</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format('0', 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top bor-bottom' style='font-size:10px;'></td><td colspan='2' class='bor-bottom' style='font-size:10px;'>Jumlah Keseluruhan</td><td align='right' class='bor-right bor-bottom' style='font-size:10px;'>" . number_format($total, 0, '.', ',') . "</td></tr>
 					</table>
@@ -349,7 +351,7 @@ foreach ($rows as $row) {
 				$html .= "<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Ketetapan Pokok Pajak</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($pajak_sesungguhnya, 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Kompensasi Bulan Sebelumnya</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($row['kompensasi'], 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Pengurangan PAT 55%</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($pengurangan_pat, 0, '.', ',') . "</td></tr>
-					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>0</td></tr>
+					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($fine, 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td></td><td class='nobor-left' style='font-size:10px;'>: b. Kenaikan</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format('0', 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top bor-bottom' style='font-size:10px;'></td><td colspan='2' class='bor-bottom' style='font-size:10px;'>Jumlah Keseluruhan</td><td align='right' class='bor-right bor-bottom' style='font-size:10px;'>" . number_format($total, 0, '.', ',') . "</td></tr>
 					</table>
@@ -370,7 +372,7 @@ foreach ($rows as $row) {
 				$html .= "<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Ketetapan Pokok Pajak</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($row['nilai_terkena_pajak'], 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Kompensasi Bulan Sebelumnya</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($row['kompensasi'], 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Pengurangan PAT 97%</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($pengurangan_pat, 0, '.', ',') . "</td></tr>
-					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>0</td></tr>
+					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($fine, 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td></td><td class='nobor-left' style='font-size:10px;'>: b. Kenaikan</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format('0', 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top bor-bottom' style='font-size:10px;'></td><td colspan='2' class='bor-bottom' style='font-size:10px;'>Jumlah Keseluruhan</td><td align='right' class='bor-right bor-bottom' style='font-size:10px;'>" . number_format($total, 0, '.', ',') . "</td></tr>
 					</table>
@@ -389,7 +391,7 @@ foreach ($rows as $row) {
 				$html .= "<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Ketetapan Pokok Pajak</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($row['nilai_terkena_pajak'], 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Kompensasi Bulan Sebelumnya</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($row['kompensasi'], 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Pengurangan PAT 55%</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($pengurangan_pat, 0, '.', ',') . "</td></tr>
-					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>0</td></tr>
+					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($fine, 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td></td><td class='nobor-left' style='font-size:10px;'>: b. Kenaikan</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format('0', 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top bor-bottom' style='font-size:10px;'></td><td colspan='2' class='bor-bottom' style='font-size:10px;'>Jumlah Keseluruhan</td><td align='right' class='bor-right bor-bottom' style='font-size:10px;'>" . number_format($total, 0, '.', ',') . "</td></tr>
 					</table>
