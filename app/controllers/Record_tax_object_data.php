@@ -692,6 +692,9 @@ class record_tax_object_data extends item_bundle_parent
 							$input_params3['indeks_kelas_jalan'] = $index3;
 							$input_params3['indeks_ketinggian'] = $index4;
 							$input_params3['nsl'] = $_POST['input2-nsl' . $i];
+							$input_params3['panjang'] = str_replace(',', '', $_POST['input2-panjang' . $i]);
+							$input_params3['lebar'] = str_replace(',', '', $_POST['input2-lebar' . $i]);
+							$input_params3['sisi'] = str_replace(',', '', $_POST['input2-sisi' . $i]);
 							$input_params3['ukuran'] = str_replace(',', '', $_POST['input2-ukuran' . $i]);
 							$input_params3['jangka_waktu'] = $periode;
 							$input_params3['jumlah'] = str_replace(',', '', $_POST['input2-jumlah' . $i]);

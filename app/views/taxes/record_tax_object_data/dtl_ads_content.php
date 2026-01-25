@@ -88,13 +88,13 @@ if ($ads_type_id == '') {
 							<tbody>
 								<tr>
 									<td>
-										<input type='text' class='form-control thousand_format' placeholder='Panjang' id='input2-panjang" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
+										<input type='text' class='form-control thousand_format' placeholder='Panjang' name='input2-panjang" . $order_num . "' id='input2-panjang" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
 									</td>
 									<td>
-										<input type='text' class='form-control thousand_format' placeholder='Lebar' id='input2-lebar" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
+										<input type='text' class='form-control thousand_format' placeholder='Lebar' name='input2-lebar" . $order_num . "' id='input2-lebar" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
 									</td>
 									<td>
-										<input type='text' class='form-control thousand_format' placeholder='Sisi' id='input2-sisi" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
+										<input type='text' class='form-control thousand_format' placeholder='Sisi' name='input2-sisi" . $order_num . "' id='input2-sisi" . $order_num . "' onkeyup=\"hitungUkuranOtomatis(" . $order_num . ")\" />
 									</td>
 								</tr>
 							</tbody>
