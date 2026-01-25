@@ -57,11 +57,17 @@ foreach ($rows as $row) {
 					<td align='center' class='bor-right' style='font-size:10px;'>JUMLAH (Rp.)</td></tr>
 					<tr><td align='center' valign='top' style='font-size:10px;'>1.</td>
 					<td align='center' valign='top' style='font-size:10px;'>" . $row['kode_rekening'] . "</td>
-					<td valign='top' colspan='2' style='font-size:10px;'>Ketetapan " . $row['nama_pajak'] . " Bagian Bulan<br />" . $tax_period . " Tahun " . $row['tahun_pajak'] . "<br/>Nilai Perolehan Air : " . number_format($row['nilai_terkena_pajak'], 0, '.', ',') . "<br/>Tarif : 25%<br/>" . $row['nama_pajak'] . " : " . number_format($pajak_sesungguhnya, 0, '.', ',') . "";
+					<td valign='top' colspan='2' style='font-size:10px;'>Ketetapan " . $row['nama_pajak'] . " Bagian Bulan
+					<br />" . $tax_period . " Tahun " . $row['tahun_pajak'] . "
+					<br />Jenis Reklame : " . $row['jenis_reklame'] . "
+					<br />Judul Reklame : " . $row['judul_reklame'] . "
+					<br />Ukuran : " . $row['ukuran'] . " ( " . $row['panjang'] . " m x " . $row['lebar'] . " m x " . $row['sisi'] . " sisi )
+					<br/> Harga Satuan : " . number_format($row['harga_satuan'], 0, '.', ',') . "
+					<br/> Nilai Sewa Lokasi (NSL) : " . $row['nsl'] . "
+					<br/>Nilai Terkena Pajak : " . number_format($row['nilai_terkena_pajak'], 0, '.', ',') . "
+					<br/>Tarif : 25%
+					<br/>" . $row['nama_pajak'] . " : " . number_format($pajak_sesungguhnya, 0, '.', ',') . "";
 
-		if ($row['pajak_id'] == '3') {
-			$html .= "<br />Judul Reklame : " . $row['judul_reklame'];
-		}
 		$html .= "</td>
 					<td class='bor-right' align='right' valign='top' style='font-size:10px;'>" . number_format($pajak_sesungguhnya, 0, '.', ',') . "</td>
 					</tr>";
@@ -69,9 +75,7 @@ foreach ($rows as $row) {
 		$interest = $row['bunga'];
 		$discount = $row['diskon'];
 		$grand_total = $total + $interest - $discount;
-		// $diff_month = get_diff_months($row['tgl_jatuh_tempo'], date('Y-m-d'), $row['jenis_spt_id']);
-		// $fine = assess_fine($row['pajak'], $diff_month);
-		// $total = $row['pajak'] + $fine;
+
 		$html .= "<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Ketetapan Pokok Pajak</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($row['pajak'], 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Kompensasi Bulan Sebelumnya</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($row['kompensasi'], 0, '.', ',') . "</td></tr>
 					<tr><td colspan='2' class='nobor-top' style='font-size:10px;'></td><td style='font-size:10px;'>Jumlah Sanksi</td><td class='nobor-left' style='font-size:10px;'>: a. Denda</td><td align='right' class='bor-right' style='font-size:10px;'>0</td></tr>
@@ -90,15 +94,6 @@ foreach ($rows as $row) {
 				<td colspan='3' style='padding:10px' class='bor-right'>
 					<h5><u>PERHATIAN :</u></h5>";
 
-
-
-		// $html .= "<table class='noborder' style='font-size:0.8em'>
-		// 				<tr><td valign='top'>1.</td><td valign='top'>Harap penyetoran dilakukan pada Bank/Bendahara Penerimaan.</td></tr>
-		// 				<tr><td valign='top'>2.</td><td valign='top'>Apabila " . $row['singkatan_spt'] . " ini tidak atau kurang dibayar setelah waktu paling lama 30 hari setelah " . $row['singkatan_spt'] . " diterima atau (Tanggal jatuh tempo)
-		// 				dikenakan sanksi administrasi berupa bunga sebesar 2 % per bulan</td></tr>
-		// 				<tr><td valign='top'>3.</td><td valign='top'>Pembayaran pajak daerah bukan merupakan bukti izin. Wajib pajak mengurus perijinan pada instansi perijinan terkait.</td></tr>
-		// 				</table>";
-
 		$html .= "<table class='noborder' style='font-size:10px;'>
 					<tr><td valign='top'>1.</td><td valign='top' align='justify'>Harap penyetoran dilakukan pada Bank/Bendahara Penerimaan.</td></tr>
 					<tr><td valign='top'>2.</td><td valign='top' align='justify'>Apabila " . $row['singkatan_spt'] . " ini tidak atau kurang dibayar setelah paling lama 1 (satu) bulan sejak tanggal pengiriman " . $row['singkatan_spt'] . " diberikan sanksi administratif berupa bunga sebesar 1 % (satu persen) per bulan dihitung dari pajak pajak yang kurang dibayar, dihitung dari tanggal jatuh tempo pembayaran sampai dengan tanggal pembayaran, untuk jangka waktu paling lama 24 (dua puluh empat) bulan.</td></tr>
@@ -111,23 +106,23 @@ foreach ($rows as $row) {
 				<tr>
 				<td colspan='3' style='padding:10px' class='bor-right bor-bottom'>
 					<table class='noborder'>
-					<tr>
-					<td align='center'>Scan Me <br>
-						<img src='" . $this->config->item('img_path') . "barcode_payment_blitar.png'/>
-					</td>
-					<td width='50%'>
-						<table class='noborder' style='font-size:0.8em'>
-							<tr><td></td><td>" . $system_params[19] . ", " . indo_date_format($row['tgl_penetapan'], 'longDate') . "</td></tr>
-							<tr><td align='right' valign='top'></td>
-							<td>Kepala " . $system_params[2] . "<br />
-							" . $legalitator_row['nama_jabatan'] . "<br /><br /><br /><br /><br />
-							<b><u>" . $legalitator_row['nama'] . "</u></b>
-							<br />" . $legalitator_row['pangkat'] . "
-							<br />NIP : " . $legalitator_row['nip'] . "
-							</td></tr>
-						</table>
-					</td>
-					</tr>
+						<tr>
+							<td align='center'>Scan Me <br>
+								<img src='" . $this->config->item('img_path') . "barcode_payment_blitar.png'/>
+							</td>
+							<td width='50%'>
+								<table class='noborder' style='font-size:0.8em'>
+									<tr><td></td><td>" . $system_params[19] . ", " . indo_date_format($row['tgl_penetapan'], 'longDate') . "</td></tr>
+									<tr><td align='right' valign='top'></td>
+									<td>Kepala " . $system_params[2] . "<br />
+									" . $legalitator_row['nama_jabatan'] . "<br /><br /><br /><br /><br />
+									<b><u>" . $legalitator_row['nama'] . "</u></b>
+									<br />" . $legalitator_row['pangkat'] . "
+									<br />NIP : " . $legalitator_row['nip'] . "
+									</td></tr>
+								</table>
+							</td>
+						</tr>
 					</table>
 				</td>
 				</tr></table>		
@@ -169,12 +164,6 @@ foreach ($rows as $row) {
 				</td>
 				</tr>
 				</table>";
-
-		// $html .= "<p style='font-size:0.8em'>
-		// 				*) Coret yang tidak perlu<br />
-		// 				Catatan : <br />
-		// 				Penetapan jumlah SKP - Daerah didasarkan pada nota perhitungan sebagai dasar perhitungan pajak
-		// 			</p>";
 
 		if ($i == $n_row) {
 			$html .= "</body></html>";
@@ -324,9 +313,7 @@ foreach ($rows as $row) {
 		$interest = $row['bunga'];
 		$discount = $row['diskon'];
 		$grand_total = $total + $interest - $discount;
-		// $diff_month = get_diff_months($row['tgl_jatuh_tempo'], date('Y-m-d'), $row['jenis_spt_id']);
-		// $fine = assess_fine($row['pajak'], $diff_month);
-		// $total = $row['pajak'] + $fine;
+
 		if ($row['hrg_0_50'] == '0') {
 			if ($row['wp_wr_id'] == '40') {
 				$html .= "<tr><td colspan='2' style='font-size:10px;'></td><td colspan='2' style='font-size:10px;'>Jumlah Ketetapan Pokok Pajak</td><td align='right' class='bor-right' style='font-size:10px;'>" . number_format($pajak_sesungguhnya, 0, '.', ',') . "</td></tr>
@@ -409,15 +396,6 @@ foreach ($rows as $row) {
 			}
 		}
 
-
-
-		// $html .= "<table class='noborder' style='font-size:0.8em'>
-		// 				<tr><td valign='top'>1.</td><td valign='top'>Harap penyetoran dilakukan pada Bank/Bendahara Penerimaan.</td></tr>
-		// 				<tr><td valign='top'>2.</td><td valign='top'>Apabila " . $row['singkatan_spt'] . " ini tidak atau kurang dibayar setelah waktu paling lama 30 hari setelah " . $row['singkatan_spt'] . " diterima atau (Tanggal jatuh tempo)
-		// 				dikenakan sanksi administrasi berupa bunga sebesar 2 % per bulan</td></tr>
-		// 				<tr><td valign='top'>3.</td><td valign='top'>Pembayaran pajak daerah bukan merupakan bukti izin. Wajib pajak mengurus perijinan pada instansi perijinan terkait.</td></tr>
-		// 				</table>";
-
 		$html .= "<table class='noborder' style='font-size:10px;'>
 					<tr><td valign='top'>1.</td><td valign='top' align='justify'>Harap penyetoran dilakukan pada Bank/Bendahara Penerimaan.</td></tr>
 					<tr><td valign='top'>2.</td><td valign='top' align='justify'>Apabila " . $row['singkatan_spt'] . " ini tidak atau kurang dibayar setelah paling lama 1 (satu) bulan sejak tanggal pengiriman " . $row['singkatan_spt'] . " diberikan sanksi administratif berupa bunga sebesar 1 % (satu persen) per bulan dihitung dari pajak pajak yang kurang dibayar, dihitung dari tanggal jatuh tempo pembayaran sampai dengan tanggal pembayaran, untuk jangka waktu paling lama 24 (dua puluh empat) bulan.</td></tr>
@@ -488,12 +466,6 @@ foreach ($rows as $row) {
 				</td>
 				</tr>
 				</table>";
-
-		// $html .= "<p style='font-size:0.8em'>
-		// 				*) Coret yang tidak perlu<br />
-		// 				Catatan : <br />
-		// 				Penetapan jumlah SKP - Daerah didasarkan pada nota perhitungan sebagai dasar perhitungan pajak
-		// 			</p>";
 
 		if ($i == $n_row) {
 			$html .= "</body></html>";

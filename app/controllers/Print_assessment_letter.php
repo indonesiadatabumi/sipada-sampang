@@ -225,13 +225,15 @@ class print_assessment_letter extends item_bundle_parent
 			//Advertisement SKPD
 			if ($this->bundle_id == '3') {
 
-				$sql = "SELECT a.penetapan_id,a.tgl_penetapan,a.tgl_jatuh_tempo,a.kohir,b.*, c.kompensasi FROM penetapan_pajak as a 
+				$sql = "SELECT a.penetapan_id,a.tgl_penetapan,a.tgl_jatuh_tempo,a.kohir,b.*, c.kompensasi, d.panjang, d.lebar, d.sisi, d.ukuran, d.harga_satuan, d.nsl, e.jenis_reklame FROM penetapan_pajak as a 
 							INNER JOIN (SELECT a.*,b.dasar_hukum,b.kode_rekening,c.jenis_reklame as nama_kegus,c.judul as judul_reklame,
 										b.volume,b.nilai_terkena_pajak,b.tarif_dasar,b.diskon,b.denda,b.bunga FROM v_spt as a 
 								LEFT JOIN (SELECT x.spt_id,x.volume,x.nilai_terkena_pajak,x.tarif_dasar,x.diskon,x.denda,x.bunga,y.dasar_hukum,y.kode_rekening,y.nama_kegus FROM spt_detil as x 
 										   LEFT JOIN ref_kegiatan_usaha as y ON (x.kegus_id=y.ref_kegus_id)) as b ON (a.spt_id=b.spt_id) 
 								LEFT JOIN (SELECT x.spt_id,y.jenis_reklame,x.judul FROM spt_detil_reklame as x LEFT JOIN ref_jenis_reklame as y ON (x.jenis_reklame_id=y.ref_jenrek_id)) as c ON (a.spt_id=c.spt_id)) as b ON (a.spt_id=b.spt_id)
-								LEFT JOIN spt as c ON a.spt_id=c.spt_id";
+								LEFT JOIN spt as c ON a.spt_id=c.spt_id
+								LEFT JOIN spt_detil_reklame as d ON a.spt_id=d.spt_id
+								LEFT JOIN ref_jenis_reklame as e ON d.jenis_reklame_id=e.ref_jenrek_id";
 			} elseif ($this->bundle_id == '7') {
 				$sql = "SELECT a.penetapan_id,a.tgl_penetapan, a.tgl_jatuh_tempo,a.kohir,b.*, c.kompensasi, d.vol_0_50, d.vol_51_500, d.vol_501_1000, d.vol_1001_2500, d.vol_leb_2500, d.hrg_0_50, d.hrg_51_500, d.hrg_501_1000, d.hrg_1001_2500, d.hrg_leb_2500 FROM penetapan_pajak as a 
 							INNER JOIN (SELECT a.*,b.dasar_hukum,b.kode_rekening,b.nama_kegus,b.volume,b.nilai_terkena_pajak,b.tarif_dasar,b.diskon,b.denda,b.bunga FROM v_spt as a 
