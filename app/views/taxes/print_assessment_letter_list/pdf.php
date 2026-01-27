@@ -11,7 +11,7 @@ $html = "<!DOCTYPE html><html><head>
 			<td width='32%'>
 			<table>
 			<tr>
-			<td><img src='" . $this->config->item('img_path') . "logo_pemda.jpg' style='width:42px;'/>
+			<td><img src='" . $this->config->item('logo_path') . "logo_pemda.png' style='width:42px;'/>
 			</td>
 			<td>
 			<h6>PEMERINTAH " . strtoupper($system_params[7] . " " . $system_params[6]) . "<br />
@@ -39,12 +39,12 @@ if ($zone_searched) {
 $html .= "<table class='report' cellpadding='0' cellspacing='0' style='font-size:0.9em'>
 			  <thead>";
 
-if ($spt_type_id == '1' && $spt_type_id == '8') {
+if ($spt_type_id == '1' || $spt_type_id == '8') {
 	if ($bundle_id == '3') {
 		$html .= "<tr>
 				  <th rowspan='2'>No.</th><th colspan='2'>" . $spt_name . "</th><th rowspan='2'>Nama Wajib Pajak</th>
 				  <th rowspan='2'>Naskah Reklame</th><th rowspan='2'>Alamat Wajib Pajak</th><th rowspan='2'>Lokasi Pasang</th>
-				  <th rowspan='2'>Jenis Reklame</th><th rowspan='2'>Ketetapan</th><th rowspan='2' class='bor-right'>Jatuh Tempo</th>
+				  <th rowspan='2'>Jenis Reklame</th><th rowspan='2'>Ukuran Reklame</th><th rowspan='2'>Ketetapan</th><th rowspan='2' class='bor-right'>Jatuh Tempo</th>
 				  </tr>
 				  <tr><th>Tanggal</th><th>No. Kohir</th></tr>";
 	} else {
@@ -70,7 +70,7 @@ $n_rows = count($rows);
 $tot_tax = 0;
 $tot_turnover = 0;
 
-if ($spt_type_id == '1' && $spt_type_id = '8') {
+if ($spt_type_id == '1' || $spt_type_id = '8') {
 	if ($bundle_id == '3') {
 		foreach ($rows as $row) {
 			$no++;
@@ -85,6 +85,7 @@ if ($spt_type_id == '1' && $spt_type_id = '8') {
 						  <td class='" . $bor_bottom . "'>" . $row['alamat'] . "</td>
 						  <td class='" . $bor_bottom . "'>" . $row['lokasi_reklame'] . "</td>
 						  <td class='" . $bor_bottom . "'>" . $row['jenis_reklame'] . "</td>
+						  <td class='" . $bor_bottom . "'>" . $row['ukuran'] . " (" . $row['panjang'] . " x " . $row['lebar'] . " x " . $row['sisi'] . ")</td>
 						  <td class='" . $bor_bottom . "' align='right'>" . number_format($row['pajak']) . "</td>
 						  <td class='" . $bor_bottom . " bor-right' align='center'>" . indo_date_format($row['tgl_jatuh_tempo'], 'shortDate') . "</td></tr>";
 		}
@@ -132,9 +133,9 @@ if ($spt_type_id == '1' && $spt_type_id = '8') {
 $html .= "</tbody>
 			<tfoot>";
 
-if ($spt_type_id == '1' && $spt_type_id = '8') {
+if ($spt_type_id == '1' || $spt_type_id = '8') {
 	if ($bundle_id == '3') {
-		$html .= "<tr><td colspan='8' align='right' class='bor-bottom'><b>TOTAL</b></td><td align='right' class='bor-bottom'>" . number_format($tot_tax) . "</td><td class='bor-right bor-bottom'></td></tr>";
+		$html .= "<tr><td colspan='9' align='right' class='bor-bottom'><b>TOTAL</b></td><td align='right' class='bor-bottom'>" . number_format($tot_tax) . "</td><td class='bor-right bor-bottom'></td></tr>";
 	} else {
 		$html .= "<tr><td colspan='6' align='right' class='bor-bottom'><b>TOTAL</b></td><td align='right' class='bor-bottom'>" . number_format($tot_tax) . "</td>
 					  <td align='right' class='bor-bottom'>" . number_format($tot_turnover) . "</td><td class='bor-right bor-bottom'></td></tr>";

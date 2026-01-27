@@ -163,10 +163,15 @@ class print_assessment_letter_list extends item_bundle_parent
 		if ($report_type == 1) {
 			$view_folder .= '/print';
 		} else if ($report_type == 2) {
-			// $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', [215, 330],'orientation'=>'P']);
-			$mpdf = new \Mpdf\Mpdf(['tempDir' => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mpdf']);
-
-			$mpdf->SetMargins(10, 10, 10);
+			$mpdf = new \Mpdf\Mpdf([
+				'tempDir'     => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mpdf',
+				'mode'        => 'utf-8',
+				'format'      => 'A4-L', // 'L' berarti Landscape
+				'margin_left' => 10,
+				'margin_right' => 10,
+				'margin_top'  => 10,
+				'margin_bottom' => 10
+			]);
 			// $data['mpdf'] = $mpdf;
 			$data = array(
 				'rows' => $rows,
@@ -210,8 +215,8 @@ class print_assessment_letter_list extends item_bundle_parent
 			if ($this->bundle_id == '3') {
 
 				$sql = "SELECT a.penetapan_id,a.tgl_penetapan,a.kohir,a.tgl_jatuh_tempo,b.* FROM penetapan_pajak as a 
-							INNER JOIN (SELECT a.*,b.jenis_reklame,b.judul as judul_reklame,b.lokasi as lokasi_reklame FROM v_spt as a 
-								LEFT JOIN (SELECT x.spt_id,y.jenis_reklame,x.judul,x.lokasi FROM spt_detil_reklame as x 
+							INNER JOIN (SELECT a.*,b.jenis_reklame,b.judul as judul_reklame,b.lokasi as lokasi_reklame,b.ukuran,b.panjang,b.lebar,b.sisi FROM v_spt as a 
+								LEFT JOIN (SELECT x.spt_id,y.jenis_reklame,x.judul,x.lokasi,x.ukuran,x.panjang,x.lebar,x.sisi FROM spt_detil_reklame as x 
 									LEFT JOIN ref_jenis_reklame as y ON (x.jenis_reklame_id=y.ref_jenrek_id)) as b ON (a.spt_id=b.spt_id)) as b ON (a.spt_id=b.spt_id)";
 			} else { //Non Advertisement SKPD
 
