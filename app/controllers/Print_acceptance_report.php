@@ -32,6 +32,8 @@ class print_acceptance_report extends item_bundle_parent
 			$pajak_id = '1';
 		} elseif ($this->bundle_item_type == 'restaurant') {
 			$pajak_id = '2';
+		} elseif ($this->bundle_item_type == 'advertisement') {
+			$pajak_id = '3';
 		} elseif ($this->bundle_item_type == 'entertainment') {
 			$pajak_id = '4';
 		} elseif ($this->bundle_item_type == 'nonmetallic_mineral_rock') {
