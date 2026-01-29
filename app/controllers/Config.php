@@ -176,11 +176,13 @@ class config extends CI_Controller
 				'" . date('Y-m-d H:i:s') . "',
 				'" . date('Y-m-d H:i:s') . "'
 			)");
+
+		header('Content-Type: application/json');
+
 		if ($create) {
-			echo json_encode("{'status': 'success'}");
+			echo json_encode(['status' => 'success', 'message' => 'User berhasil ditambahkan']);
 		} else {
-			// failed to create user
-			echo json_encode("{'status': 'failed'}");
+			echo json_encode(['status' => 'error', 'message' => 'Gagal menyimpan data ke database']);
 		}
 	}
 
@@ -1407,6 +1409,9 @@ class config extends CI_Controller
 	{
 		$this->admin_access_handler->check_access();
 		$bundle_rows = $this->dao->execute(0, "DELETE FROM pejabat_daerah WHERE pejda_id=$pejda_id");
-		echo json_encode("{status:'success'}");
+
+		header('Content-Type: application/json');
+
+		echo json_encode(['status' => 'success', 'message' => 'Data berhasil dihapus']);
 	}
 }
