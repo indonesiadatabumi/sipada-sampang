@@ -157,10 +157,20 @@ class payment extends CI_Controller
 			}
 		}
 
+		$sql_get_no_sts = "SELECT MAX(no_urut_sts) as no_urut_sts FROM transaksi_pajak";
+		$get_no_sts = $this->dao->execute(0, $sql_get_no_sts)->row_array();
+
+		if ($get_no_sts['no_urut_sts'] == null) {
+			$no_sts = 1;
+		} else {
+			$no_sts = $get_no_sts['no_urut_sts'] + 1;
+		}
+
 		$data = array(
 			'row' => $row,
 			'kode_billing' => $kode_billing,
 			'tgl_setor' => $tgl_setor,
+			'no_urut_sts' => $no_sts
 		);
 
 		$view_folder = 'taxes/' . $this->active_controller;

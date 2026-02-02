@@ -74,7 +74,7 @@ echo "</tbody>
 				    				<tr><td>Jenis Ketetapan</td><td><input type='text' class='form-control' value='" . $row['singkatan_spt'] . "' readonly/></td></tr>
 				    				<tr><td>Penerima Setoran</td><td><input type='text' class='form-control' value='" . $this->session->userdata('role') . "' readonly/></td></tr>
 				    				<tr><td>Tgl. Penyetoran</td><td><input type='text' id='input-tgl_bayar-date' name='tgl_bayar' class='form-control' value='" . indo_date_format($tgl_setor, 'shortDate') . "'/></td></tr>
-									<tr><td>No. Urut STS</td><td><input type='text' name='no_urut_sts' class='form-control' required/></td></tr>			    				
+									<tr><td>No. Urut STS</td><td><input type='text' name='no_urut_sts' class='form-control' value='" . $no_urut_sts . "' required/></td></tr>			    				
 				    				<tr><td>Jumlah Setoran</td><td><input type='text' class='form-control currency-text bg-gold' style='color:#fff;border:2px solid #fcf63f;' value='" . number_format($row['grand_total']) . "' readonly/></td></tr>
 				    				<tr><td></td><td><button type='submit' class='btn btn-success'><i class='fa fa-money'></i> Bayar</button></td></tr>
 				    			</tbody>
