@@ -765,7 +765,7 @@ class record_tax_object_data extends item_bundle_parent
 					}
 
 					$input_params['wp_wr_reklame_id'] = $wp_wr_reklame_id;
-					$input_params['wp_wr_id'] = '0';
+					$input_params['wp_wr_id'] = $_POST['input-wp_wr_id'];
 					$input_params['npwprd'] = $input_params4['npwpd'];
 				} else if ($this->bundle_id == '4') {
 
